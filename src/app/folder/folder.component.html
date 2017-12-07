@@ -1,0 +1,19 @@
+<div class="directory-container">
+  <mat-toolbar color="primary">
+    <mat-form-field class="example-form-field full-width">
+      <input matInput type="text" [(ngModel)]="url"/>
+      <button mat-button *ngIf="url" matSuffix mat-icon-button aria-label="Clear" (click)="goToUrl()">
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+      </button>
+    </mat-form-field>
+    <button mat-fab color="warn" class="pull-right" (click)="onNewFolderAdd()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+  </mat-toolbar>
+  <div class="folder-container">
+    <div *ngFor = 'let folder of folderData.subFolders' class="folders pt-10 pb-10 col-md-3 col-sm-3 cols-xs-6">
+        <i class="fa fa-folder" aria-hidden="true"></i>
+      {{folder.folderName}}
+    </div>
+  </div>
+</div>

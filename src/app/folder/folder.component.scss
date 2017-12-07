@@ -1,0 +1,27 @@
+.directory-container{
+    border: 1px solid #000;
+    width: 750px;
+    height: 630px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -375px;
+    margin-top: -315px;
+    overflow: hidden;
+    .top-bar{
+        width: 100%;
+        padding: 5px;
+        border-bottom:1px solid #000; 
+    }
+    .folder-container{
+        width: 100%;
+        overflow: auto;
+        .folders{
+            text-align: center;
+            i{
+                display: block;
+                font-size: 89px;
+            }
+        }
+    }
+}

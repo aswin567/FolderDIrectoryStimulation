@@ -1,0 +1,8 @@
+<div class="newfolder-container">
+    <mat-form-field class="example-full-width">
+        <input matInput #message maxlength="20" placeholder="New Folder Name" [(ngModel)]="newFolderName">
+          <mat-hint align="end">{{message.value.length}} / 20</mat-hint>
+      </mat-form-field>
+      <button mat-button color="primary" (click)="submit()">Submit</button>
+      <button mat-button color="warn" (click)="cancel()">Cancel</button>
+</div>
