@@ -1,5 +1,8 @@
 <div class="directory-container">
   <mat-toolbar color="primary">
+    <button class="pull-right back-btn" [class.disabled]="url === '/'" [disabled]="url === '/'" (click)="goBack()">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </button>
     <mat-form-field class="example-form-field full-width">
       <input matInput type="text" [(ngModel)]="url"/>
       <button mat-button *ngIf="url" matSuffix mat-icon-button aria-label="Clear" (click)="goToUrl()">
@@ -12,7 +15,7 @@
   </mat-toolbar>
   <div class="folder-container">
     <div *ngFor = 'let folder of folderData.subFolders' class="folders pt-10 pb-10 col-md-3 col-sm-3 cols-xs-6">
-        <i class="fa fa-folder" aria-hidden="true"></i>
+        <i class="fa fa-folder" aria-hidden="true" (dblclick)='openFolder(folder.folderName)'></i>
       {{folder.folderName}}
     </div>
   </div>

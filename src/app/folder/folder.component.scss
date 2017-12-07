@@ -8,11 +8,13 @@
     margin-left: -375px;
     margin-top: -315px;
     overflow: hidden;
-    .top-bar{
-        width: 100%;
-        padding: 5px;
-        border-bottom:1px solid #000; 
-    }
+    .back-btn{
+            border: none;
+            background: none;
+            padding: 16px;
+            color: #1efd06;
+            outline: none;
+        }
     .folder-container{
         width: 100%;
         overflow: auto;
