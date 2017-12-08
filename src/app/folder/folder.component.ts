@@ -13,14 +13,23 @@ export class FolderComponent implements OnInit {
   directoryData: Data = Data.getInstance();
   folderData: Folder;
   url: string;
+  height: string;
+  containerHeight: string;
+  marginTop: string;
   folderUrlList: Array<string> = [];
   constructor(private dialog: MatDialog, private snacksBar: MatSnackBar) { }
 
   ngOnInit() {
     this.folderUrlList.push('/');
     this.goToUrl();
+    this.onHeightSet();
   }
-
+  onHeightSet() {
+    const windowHeight = window.innerHeight;
+    this.height = Number(windowHeight - 20) + 'px';
+    this.marginTop = '-' + Number((windowHeight - 20) / 2) + 'px';
+    this.containerHeight = Number(windowHeight - (20 + 64)) + 'px';
+  }
   goToUrl(): void {
     if (!this.url) {
       this.url = '/';
@@ -125,7 +134,7 @@ export class FolderComponent implements OnInit {
       });
     }
   }
-  isValidUrl(url: string= this.url) {
+  isValidUrl(url: string = this.url) {
     const isValid = this.folderUrlList.some((folderUrl) => {
       return folderUrl === url;
     });
