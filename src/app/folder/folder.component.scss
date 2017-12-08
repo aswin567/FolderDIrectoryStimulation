@@ -1,12 +1,11 @@
 .directory-container{
     width: 750px;
-    height: 630px;
+    max-width: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
     padding: 0 !important;
     margin-left: -375px;
-    margin-top: -315px;
     overflow: hidden;
     .back-btn{
             border: none;
