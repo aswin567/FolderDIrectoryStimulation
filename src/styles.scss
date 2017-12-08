@@ -6,11 +6,16 @@
     margin: 0;
 }
 
-
+body{
+    background: #eee;
+}
 .full-width{
     width: 100%;
 }
 
+.p-0{
+    padding: 0px !important;
+}
 .pb-10{
     padding-bottom: 10px !important; 
 }

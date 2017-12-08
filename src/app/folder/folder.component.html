@@ -1,5 +1,5 @@
 <mat-card class="directory-container">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="p-0">
     <button class="pull-right back-btn" [class.disabled]="url === '/'" [disabled]="url === '/'" (click)="goBack()">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
     </button>
@@ -9,7 +9,7 @@
         <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
       </button>
     </mat-form-field>
-    <button mat-fab color="warn" class="pull-right" (click)="onNewFolderAdd()">
+    <button mat-fab color="warn" class="pull-right add-btn" [class.disabled]="!isValidUrl()" [disabled]="!isValidUrl()" (click)="onNewFolderAdd()">
         <i class="fa fa-plus" aria-hidden="true"></i>
       </button>
   </mat-toolbar>
