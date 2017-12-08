@@ -10,6 +10,7 @@ import { Folder } from '../folder';
 export class NewFolderComponent implements OnInit {
   newFolderName = '';
   url: string;
+  isDuplicatedName: boolean;
   directory: Array<Folder>;
   constructor(public dialogRef: MatDialogRef<NewFolderComponent>, private snacksBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) data: any) {
@@ -31,7 +32,8 @@ export class NewFolderComponent implements OnInit {
       } else {
         newUrl = this.url + '/' + this.newFolderName;
       }
-      if (this.isDuplicatedName(newUrl)) {
+      this.checkDuplicateName(newUrl);
+      if (this.isDuplicatedName) {
         this.snacksBar.open('Duplicate Entry', 'Ok', {
           duration: 5000
         });
@@ -45,19 +47,16 @@ export class NewFolderComponent implements OnInit {
     }
   }
 
-  isDuplicatedName(newUrl: string, directory: Array<Folder> = this.directory) {
-    let duplicate;
+  checkDuplicateName(newUrl: string, directory: Array<Folder>= this.directory) {
     for (let i = 0; i < directory.length; i++) {
       if (directory[i].url === newUrl) {
-        duplicate = true;
-        break;
-      } else if (directory[i].subFolders.length !== 0) {
-        this.isDuplicatedName(newUrl, directory[i].subFolders);
-      } else {
-        duplicate =  false;
-      }
+       this.isDuplicatedName = true;
+       break;
+      }else if (directory[i].subFolders.length !== 0) {
+       this.checkDuplicateName(newUrl, directory[i].subFolders);
+     } else {
+      this.isDuplicatedName = false;
+     }
     }
-    return duplicate;
   }
-
 }

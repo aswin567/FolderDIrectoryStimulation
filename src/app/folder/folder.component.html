@@ -1,4 +1,4 @@
-<div class="directory-container">
+<mat-card class="directory-container">
   <mat-toolbar color="primary">
     <button class="pull-right back-btn" [class.disabled]="url === '/'" [disabled]="url === '/'" (click)="goBack()">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -14,9 +14,15 @@
       </button>
   </mat-toolbar>
   <div class="folder-container">
-    <div *ngFor = 'let folder of folderData.subFolders' class="folders pt-10 pb-10 col-md-3 col-sm-3 cols-xs-6">
+    <div [hidden]='!isValidUrl()' *ngFor = 'let folder of folderData.subFolders' class="folders pt-10 pb-10 col-md-3 col-sm-3 cols-xs-6">
         <i class="fa fa-folder" aria-hidden="true" (dblclick)='openFolder(folder.folderName)'></i>
       {{folder.folderName}}
     </div>
+    <div class="no-data" *ngIf="folderData.subFolders.length === 0 && isValidUrl()">
+      This folder is empty.
+    </div>
+    <div class="no-data" *ngIf="!isValidUrl()">
+      This folder is invalid.
+    </div>
   </div>
-</div>
+</mat-card>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
 import { NewFolderComponent } from '../new-folder/new-folder.component';
 import { Data } from '../data';
 import { Folder } from '../folder';
@@ -13,9 +13,11 @@ export class FolderComponent implements OnInit {
   directoryData: Data = Data.getInstance();
   folderData: Folder;
   url: string;
-  constructor(private dialog: MatDialog) { }
+  folderUrlList: Array<string> = [];
+  constructor(private dialog: MatDialog, private snacksBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.folderUrlList.push('/');
     this.goToUrl();
   }
 
@@ -23,21 +25,28 @@ export class FolderComponent implements OnInit {
     if (!this.url) {
       this.url = '/';
     }
-    this.getFolder(this.url);
+    if (this.isValidUrl) {
+      this.getFolder(this.url);
+    } else {
+      this.snacksBar.open('Invalid Folder', 'Ok', {
+        duration: 5000
+      });
+    }
   }
 
   getFolder(url: string, directory: Array<Folder> = this.directoryData.directory) {
+    let isInvalid: boolean;
     for (let i = 0; i < directory.length; i++) {
-       if (directory[i].url === url) {
+      isInvalid = false;
+      if (directory[i].url === url) {
         this.folderData = directory[i];
         break;
-       }else if (directory[i].subFolders.length !== 0) {
+      } else if (directory[i].subFolders.length !== 0) {
         this.getFolder(url, directory[i].subFolders);
       } else {
-        this.folderData = null;
+        isInvalid = true;
       }
     }
-
   }
   onNewFolderAdd() {
     const injectData = {
@@ -66,15 +75,23 @@ export class FolderComponent implements OnInit {
     } else {
       newFolder.url = url + name;
     }
+    this.folderUrlList.push(newFolder.url);
+    let isInvalid: boolean;
     directory.forEach(element => {
+      isInvalid = false;
       if (element.url === url) {
         element.subFolders.push(newFolder);
       } else if (element.subFolders.length !== 0) {
         this.addFolder(name, url, element.subFolders);
       } else {
-        alert('invalid Folder');
+        isInvalid = true;
       }
     });
+    // if (isInvalid) {
+    //   this.snacksBar.open('Invalid Folder', 'Ok', {
+    //     duration: 5000
+    //   });
+    // }
   }
 
   goBack() {
@@ -85,7 +102,13 @@ export class FolderComponent implements OnInit {
     if (this.url === '') {
       this.url = '/';
     }
-    this.getFolder(this.url);
+    if (this.isValidUrl) {
+      this.getFolder(this.url);
+    } else {
+      this.snacksBar.open('Invalid Folder', 'Ok', {
+        duration: 5000
+      });
+    }
   }
 
   openFolder(folderName: string) {
@@ -94,6 +117,18 @@ export class FolderComponent implements OnInit {
     } else {
       this.url = this.url + '/' + folderName;
     }
-    this.getFolder(this.url);
+    if (this.isValidUrl) {
+      this.getFolder(this.url);
+    } else {
+      this.snacksBar.open('Invalid Folder', 'Ok', {
+        duration: 5000
+      });
+    }
+  }
+  isValidUrl(url: string= this.url) {
+    const isValid = this.folderUrlList.some((folderUrl) => {
+      return folderUrl === url;
+    });
+    return isValid;
   }
 }

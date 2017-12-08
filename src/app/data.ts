@@ -6,12 +6,7 @@ export class Data {
         {
             folderName: 'root',
             url: '/',
-            subFolders: [
-                {
-                folderName: 'root1',
-                url: '/root1',
-                subFolders: []}
-            ]
+            subFolders: []
         }
     ];
 

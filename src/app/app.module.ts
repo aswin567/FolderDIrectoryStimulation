@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatToolbarModule, MatInputModule,
-   MatDialogModule, MatFormFieldModule, MatSnackBarModule} from '@angular/material';
+   MatDialogModule, MatFormFieldModule, MatSnackBarModule, MatCardModule} from '@angular/material';
 import 'hammerjs';
 import { AppComponent } from './app.component';
 import { FolderComponent } from './folder/folder.component';
@@ -25,7 +25,8 @@ import { NewFolderComponent } from './new-folder/new-folder.component';
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
   ],
   entryComponents: [
     NewFolderComponent
