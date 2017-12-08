@@ -1,4 +1,4 @@
-<mat-card class="directory-container">
+<mat-card class="directory-container " [ngStyle]="{'height': height , 'margin-top':marginTop}">
   <mat-toolbar color="primary" class="p-0">
     <button class="pull-right back-btn" [class.disabled]="url === '/'" [disabled]="url === '/'" (click)="goBack()">
         <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -13,7 +13,7 @@
         <i class="fa fa-plus" aria-hidden="true"></i>
       </button>
   </mat-toolbar>
-  <div class="folder-container">
+  <div class="folder-container" [ngStyle]="{'height': containerHeight}">
     <div [hidden]='!isValidUrl()' *ngFor = 'let folder of folderData.subFolders' class="folders pt-10 pb-10 col-md-3 col-sm-3 cols-xs-6">
         <i class="fa fa-folder" aria-hidden="true" (dblclick)='openFolder(folder.folderName)'></i>
       {{folder.folderName}}
