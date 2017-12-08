@@ -2,9 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
 
+## Environment setup
+Download and install latest node js (https://nodejs.org/en/)
+Open the command prompt run this command  `npm install -g angular-cli` 
+if you have faced any issue while installation try this code
+`npm uninstall -g angular-cli`
+`npm cache clean`
+`npm install -g angular-cli@latest`
+
+Go to the project folder (folder-directory), open command prompt here  run the command `npm install`
+
+Environment setup is completed.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+Run `npm start` for a dev server. Navigate to `http://localhost:888/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
